@@ -35,7 +35,9 @@ public class PuzzleSolver {
         // TODO: display solution path from initial to goal
     }
 
-    private static TileState bfs(TileState current) {
+    private static TileState bfs(TileState initial) {
+        System.out.println("Running bfs on " + initial);
+
         // TODO:  implement breadth first search!
 
         return null;
