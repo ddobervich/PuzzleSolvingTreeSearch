@@ -10,32 +10,19 @@ public class PuzzleSolver {
 
     public static void main(String[] args) {
         // -----------------------------------------------
-        // Use this to check your TileState methods work!
-        // -----------------------------------------------
-        //humanPlay();
-
-        // -----------------------------------------------
         // Use this to run your implementation of breadth first search
         // -----------------------------------------------
-        //bfs(ONE_MOVE_TEST);
-    }
-
-
-
-
-    private static void bfs(int[][] initialBoard) {
-        TileState initial = new TileState(initialBoard);
-        TileState result = bfs(initial);
+        TileState initial = new TileState(ONE_MOVE_TEST);   // use a board to make an initial TileState
+        TileState result = bfs(initial);                    // solve it!
 
         if (result == null) {
             System.out.println("No results found.");
             System.out.println(initial);
             return;
+        } else {
+            System.out.println("Solved in: " + result.getDepth() + " moves");
+            // TODO: display solution path from initial to goal
         }
-
-        System.out.println("Solved in: " + result.getDepth() + " moves");
-
-        // TODO: display solution path from initial to goal
     }
 
     private static TileState bfs(TileState initial) {
@@ -44,30 +31,5 @@ public class PuzzleSolver {
         // TODO:  implement breadth first search!
 
         return null;
-    }
-
-    private static void humanPlay() {
-        Scanner in = new Scanner(System.in);
-        int[][] inital = {{1, 4, 3}, {6, 0, 7}, {5, 8, 2}};
-
-        TileState current = new TileState(inital);
-        //TileState current = TileState.getRandomSolvableBoard(4,1);
-
-        System.out.println(current);
-        while (!current.isGoal()) {
-            System.out.println(current);
-            System.out.println("\n");
-            System.out.println("Which would you like?");
-            List<TileState> next = current.getNextStates();
-            for (int i = 0; i < next.size(); i++) {
-                System.out.println("Type " + i + " for: ");
-                System.out.println(next.get(i));
-            }
-            int choice = in.nextInt();
-
-            if (0 <= choice && choice < next.size()) {
-                current = next.get(choice);
-            }
-        }
     }
 }
