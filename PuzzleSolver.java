@@ -6,7 +6,7 @@ public class PuzzleSolver {
     public static final int[][] TWO_MOVE_TEST = {{1, 2, 3}, {4, 0, 6}, {7, 5, 8}};
     public static final int[][] SEVEN_MOVE_TEST = {{1, 2, 3}, {8, 7, 5}, {4, 0, 6}};
     public static final int[][] FOURTEEN_MOVE_TEST = {{4, 2, 5}, {7, 1, 3}, {8, 6, 0}};
-    public static final int[][] THIRTY_ONE_MOVE_TEST = {{8, 7, 6}, {0, 4, 1}, {2, 5, 3}};
+    public static final int[][] THIRTY_ONE_MOVE_TEST = {{8, 7, 6}, {5, 4, 3}, {2, 1, 0}};
 
     public static void main(String[] args) {
         // -----------------------------------------------
@@ -19,6 +19,9 @@ public class PuzzleSolver {
         // -----------------------------------------------
         //bfs(ONE_MOVE_TEST);
     }
+
+
+
 
     private static void bfs(int[][] initialBoard) {
         TileState initial = new TileState(initialBoard);
