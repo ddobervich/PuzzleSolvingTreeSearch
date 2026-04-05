@@ -57,13 +57,16 @@ public class TileState {
         return equalBoards(board, GOAL_STATE);
     }
 
-    public void moveTile(int r, int c) {
-        if (!isAdjacent(r, c, emptyR, emptyC)) return;
+    public TileState moveTile(int r, int c) {
+        if (!isAdjacent(r, c, emptyR, emptyC)) return this;
 
         board[emptyR][emptyC] = board[r][c];
         board[r][c] = 0;
         emptyR = r;
         emptyC = c;
+        this.depth++;
+
+        return this;
     }
 
     private boolean isAdjacent(int r, int c, int r2, int c2) {
