@@ -1,7 +1,7 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class PuzzleSolver {
-    public static final int MAX_DEPTH = 8;
     public static final int[][] ONE_MOVE_TEST = {{1, 2, 3}, {4, 5, 6}, {7, 0, 8}};
     public static final int[][] TWO_MOVE_TEST = {{1, 2, 3}, {4, 0, 6}, {7, 5, 8}};
     public static final int[][] SEVEN_MOVE_TEST = {{1, 2, 3}, {8, 7, 5}, {4, 0, 6}};
@@ -12,8 +12,8 @@ public class PuzzleSolver {
         // -----------------------------------------------
         // Use this to run your implementation of breadth first search
         // -----------------------------------------------
-        TileState initial = new TileState(ONE_MOVE_TEST);   // use a board to make an initial TileState
-        TileState result = bfs(initial);                    // solve it!
+        TileState initial = new TileState(FOURTEEN_MOVE_TEST);   // use a board to make an initial TileState
+        TileState result = bfs(initial);                         // solve it!
 
         if (result == null) {
             System.out.println("No results found.");
@@ -29,7 +29,25 @@ public class PuzzleSolver {
     private static TileState bfs(TileState initial) {
         System.out.println("Running bfs on " + initial);
 
-        // TODO:  implement breadth first search!
+        ArrayList<TileState> made = new ArrayList<>();
+        made.add(initial);
+
+        ArrayList<TileState> toVisit = new ArrayList<>();
+        toVisit.add(initial);
+
+        while( toVisit.size() > 0 ) {
+            TileState current = toVisit.remove( 0 );
+
+            if (current.isGoal()) {
+                return current;
+            }
+
+            ArrayList<TileState> nextStates = current.getNextStates();
+
+            for (TileState next : nextStates) {
+                toVisit.add(next);
+            }
+        }
 
         return null;
     }

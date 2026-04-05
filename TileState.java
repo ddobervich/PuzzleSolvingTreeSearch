@@ -26,8 +26,24 @@ public class TileState {
     }
 
     public ArrayList<TileState> getNextStates() {
+        ArrayList<TileState> nextStates = new ArrayList<>();
+        if (this.isInBounds(emptyR-1, emptyC)) {
+            nextStates.add( this.copy().moveTile(emptyR-1, emptyC) );
+        }
 
-        return null;
+        if (this.isInBounds(emptyR+1, emptyC)) {
+            nextStates.add( this.copy().moveTile(emptyR+1, emptyC) );
+        }
+
+        if (this.isInBounds(emptyR, emptyC-1)) {
+            nextStates.add( this.copy().moveTile(emptyR, emptyC-1) );
+        }
+
+        if (this.isInBounds(emptyR, emptyC+1)) {
+            nextStates.add( this.copy().moveTile(emptyR, emptyC+1) );
+        }
+
+        return nextStates;
     }
 
     public int[][] getBoard() {
@@ -57,13 +73,16 @@ public class TileState {
         return equalBoards(board, GOAL_STATE);
     }
 
-    public void moveTile(int r, int c) {
-        if (!isAdjacent(r, c, emptyR, emptyC)) return;
+    public TileState moveTile(int r, int c) {
+        if (!isAdjacent(r, c, emptyR, emptyC)) return this;
 
         board[emptyR][emptyC] = board[r][c];
         board[r][c] = 0;
         emptyR = r;
         emptyC = c;
+        this.depth++;
+
+        return this;
     }
 
     private boolean isAdjacent(int r, int c, int r2, int c2) {
