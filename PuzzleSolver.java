@@ -21,6 +21,7 @@ public class PuzzleSolver {
             return;
         } else {
             System.out.println("Solved in: " + result.getDepth() + " moves");
+
             // TODO: display solution path from initial to goal
         }
     }

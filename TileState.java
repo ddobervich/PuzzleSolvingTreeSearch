@@ -3,10 +3,10 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class TileState {
-    private int[][] board;
-    private TileState parent;
-    private int emptyR, emptyC;
-    private int depth;
+    private int[][] board;          // what's the current board
+    private TileState parent;       // what was the previous board last move?
+    private int emptyR, emptyC;     // location of the empty tile
+    private int depth;              // how many moves have happened to get here?
 
     private static final int[][] GOAL_STATE  = { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
 
@@ -26,7 +26,7 @@ public class TileState {
     }
 
     public ArrayList<TileState> getNextStates() {
-        /* TODO: you do this one */
+
         return null;
     }
 
@@ -74,6 +74,10 @@ public class TileState {
 
     @Override
     public boolean equals(Object other) {
+        if (! (other instanceof TileState)) {
+            System.err.println("You can only use .equals to compare two TileState objects!");
+            return false;
+        }
         return equalBoards(this.board, ((TileState)other).board);
     }
 
@@ -140,4 +144,6 @@ public class TileState {
     public int getDepth() {
         return this.depth;
     }
+
+
 }
