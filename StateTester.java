@@ -23,6 +23,8 @@ public class StateTester {
             System.out.println("\n");
             System.out.println("Which would you like?");
             List<TileState> next = current.getNextStates();
+
+            System.out.println("[...generating next states from current.getNextStates()...]");
             for (int i = 0; i < next.size(); i++) {
                 System.out.println("Type " + i + " for: ");
                 System.out.println(next.get(i));
