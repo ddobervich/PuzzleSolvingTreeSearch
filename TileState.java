@@ -19,7 +19,7 @@ public class TileState {
 
     public TileState(TileState toCopy) {
         this.board = copy(toCopy.board);
-        this.parent = toCopy.parent;
+        this.parent = toCopy;
         this.emptyC = toCopy.emptyC;
         this.emptyR = toCopy.emptyR;
         this.depth = toCopy.depth;
@@ -27,18 +27,16 @@ public class TileState {
 
     public ArrayList<TileState> getNextStates() {
         ArrayList<TileState> nextStates = new ArrayList<>();
+
         if (this.isInBounds(emptyR-1, emptyC)) {
             nextStates.add( this.copy().moveTile(emptyR-1, emptyC) );
         }
-
         if (this.isInBounds(emptyR+1, emptyC)) {
             nextStates.add( this.copy().moveTile(emptyR+1, emptyC) );
         }
-
         if (this.isInBounds(emptyR, emptyC-1)) {
             nextStates.add( this.copy().moveTile(emptyR, emptyC-1) );
         }
-
         if (this.isInBounds(emptyR, emptyC+1)) {
             nextStates.add( this.copy().moveTile(emptyR, emptyC+1) );
         }
