@@ -9,6 +9,7 @@ public class TileState {
     private int depth;              // how many moves have happened to get here?
 
     private static final int[][] GOAL_STATE  = { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+    private static final int[][] LARGER_GOAL  = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
 
     public TileState(int[][] initial) {
         board = copy(initial);
@@ -68,7 +69,14 @@ public class TileState {
     }
 
     public boolean isGoal(int[][] board) {
-        return equalBoards(board, GOAL_STATE);
+        if (board.length == 3) {
+            return equalBoards(board, GOAL_STATE);
+        } else if (board.length == 4) {
+            return equalBoards(board, LARGER_GOAL);
+        } else {
+            System.err.println("You need to define a goal state in TileState.java!");
+            return false;
+        }
     }
 
     public TileState moveTile(int r, int c) {
